@@ -1,0 +1,23 @@
+
+
+-------------------------------------
+Device Tree for an External Stopwatch
+-------------------------------------
+Written by Solai Jeyakumar
+
+A simple device-tree and associated kernel driver for
+interaction with an external stopwatch using GPIO pins of RPI.
+
+
+1. Devicce tree  file espclock.dts
+
+   This device interacts with a clock using the clock-en pin to start/stop the clock. 
+   After the clock starts an interrupt is received from the clock. External devices
+   like ESP32 can be used to simulate  a clock.
+
+
+2. Associated kernel device driver files are in ./driver
+
+3. An user application to read from the device file in linux.
+   
+

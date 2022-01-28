@@ -1,0 +1,48 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+
+
+    compatible = "brcm,bcm2710-gpio",  "brcm,bcm2837-gpio", "brcm,bcm2711-gpio";
+
+     fragment@0 {
+
+        target-path = "/";
+
+             __overlay__ {
+
+                  espclock: espclock {
+                       compatible = "espclock";
+                       pinctrl-names = "default";
+                       pinctrl-0 = <&clock_i2c_pins>;
+                       //
+                       // rising edge 
+                       interrupt-parent = <&gpio>;
+                       interrupts = <17 0>;         //pin 11
+                       clock_int-gpios = <&gpio 17 0>; //pin 11 
+
+                       clock_en-gpios = <&gpio 27 0>; //pin 13 
+                       status = "okay";
+                  };
+            };
+     };
+
+
+     fragment@2 {
+        target = <&gpio>;
+             __overlay__ {
+                  clock_i2c_pins: clock_i2c_pins {
+                       function = "clock_i2c_bus";
+                       brcm,pins = <2 3>;    //pins  3 and 5
+                       brcm,function = <0 0>;
+                       brcm,pull = <0 0>;
+                  };
+        };
+     };
+
+
+
+
+};
+
